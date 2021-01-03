@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 start_time = Time.now
+`say "Im starting now master time now is #{Time.now}"`
 200.times do
   user = User.create!(name: Faker::Name.unique.name, email: Faker::Internet.email, password: "123456", age:rand(30..60) , occupation: Faker::Job.title)
   rand(5..8).times do
@@ -14,6 +15,7 @@ puts "creating new users"
     puts "creating new users"
   end
 end
+`say "all your 200 users have been created with 5 to 8 bonds each"`
 counter = 1
 Bond.all.each do |bond|
   days = (bond.end_date - bond.start_date).to_i
@@ -24,3 +26,4 @@ end
 end_time = Time.now
 
 puts "Time taken is #{end_time - start_time}"
+`say "all done master Time taken is #{end_time - start_time}"`
