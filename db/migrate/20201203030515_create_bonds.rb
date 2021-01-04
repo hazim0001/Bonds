@@ -7,7 +7,6 @@ class CreateBonds < ActiveRecord::Migration[6.0]
       t.date :end_date
       t.float :interest_rate
       t.integer :amount
-      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

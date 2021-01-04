@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_030515) do
+ActiveRecord::Schema.define(version: 2021_01_04_130913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assets", force: :cascade do |t|
+    t.float "total_value"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_assets_on_user_id"
+  end
 
   create_table "bonds", force: :cascade do |t|
     t.integer "period"
@@ -22,10 +30,49 @@ ActiveRecord::Schema.define(version: 2020_12_03_030515) do
     t.date "end_date"
     t.float "interest_rate"
     t.integer "amount"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_bonds_on_user_id"
+    t.bigint "asset_id"
+    t.index ["asset_id"], name: "index_bonds_on_asset_id"
+  end
+
+  create_table "cash_deposits", force: :cascade do |t|
+    t.bigint "cash_id", null: false
+    t.float "amount"
+    t.string "source"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cash_id"], name: "index_cash_deposits_on_cash_id"
+  end
+
+  create_table "cashes", force: :cascade do |t|
+    t.float "amount"
+    t.bigint "asset_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["asset_id"], name: "index_cashes_on_asset_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.float "value"
+    t.text "description"
+    t.string "location"
+    t.bigint "asset_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["asset_id"], name: "index_properties_on_asset_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "symbol"
+    t.string "instrument"
+    t.float "position"
+    t.float "average_price"
+    t.float "cost_basis"
+    t.bigint "asset_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["asset_id"], name: "index_stocks_on_asset_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,5 +90,9 @@ ActiveRecord::Schema.define(version: 2020_12_03_030515) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bonds", "users"
+  add_foreign_key "assets", "users"
+  add_foreign_key "cash_deposits", "cashes"
+  add_foreign_key "cashes", "assets"
+  add_foreign_key "properties", "assets"
+  add_foreign_key "stocks", "assets"
 end

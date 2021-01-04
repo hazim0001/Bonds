@@ -1,7 +1,7 @@
 <div class="container">
 <div class="d-flex justify-content-between mt-2">
   <h1>Bonds</h1>
-  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Add new Bond</button>
+  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newBondModal">Add new Bond</button>
 </div>
 <h3>All bonds total = <%= @total %></h3>
   <table class="table">
@@ -25,9 +25,12 @@
           <td><%= bond.amount %></td>
           <td class=" pb-0">
             <p class="card-text d-flex flex-row-reverse justify-content-between">
-              <button class="m-0" type="button" data-toggle="modal" data-target="#deletebondModal<%= bond.id %>">
+              <%= link_to bond_path(bond.id), method: :delete, data: { confirm: "Are you sure you want to delete this bond?", disable_with: "Processing..." } do %>
+                <i class="far fa-trash-alt" style="color: #ec524b;"></i>
+              <% end %>
+              <!-- <button class="m-0" type="button" data-toggle="modal" data-target="#deletebondModal<%#= bond.id %>">
                 <i class="far fa-trash-alt" style="color: gray;"></i>
-              </button>
+              </button> -->
               <button class="m-0" type="button" data-toggle="modal" data-target="#updatebondModal<%= bond.id %>">
                 <i class="far fa-edit mx-3" style="color: gray;"></i>
               </button>
@@ -40,96 +43,7 @@
     </tbody>
   </table>
 </div>
+<%= render partial: 'new_bond_modal', locals:{ new_bond: @new_bond } %>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content" style="border-radius: 2rem;">
 
-      <div class="modal-header mx-3">
-        <h5 class="modal-title" id="exampleModalLabel">Creating new Menu item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="container mt-3 bg-white">
-          <div class="row">
-            <div class="col-8 mx-auto">
-              <%= simple_form_for @new_bond, url: bonds_path do |f| %>
-                <div class="row g-3">
-                  <div class="col-6">
-                    <%= f.input :amount %>
-                  </div>
-                  <div class="col-6 ">
-                    <%= f.input :terms, collection: %w[monthly quarterly] , include_blank:" Choose Term " %>
-                  </div>
-                </div>
-                 <div>
-                   <%= f.input :start_date %>
-                   <%= f.input :end_date %>
-                   <%= f.input :interest_rate  %>
-                   <%= f.hidden_field 'user_id', value: current_user.id %>
-                 </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-footer mx-3">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <%= f.button :submit, class:"btn btn-primary" %>
-         <% end %>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- update bond data -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content" style="border-radius: 2rem;">
-
-      <div class="modal-header mx-3">
-        <h5 class="modal-title" id="exampleModalLabel">Creating new Menu item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="container mt-3 bg-white">
-          <div class="row">
-            <div class="col-8 mx-auto">
-              <%= simple_form_for @new_bond, url: bonds_path do |f| %>
-                <div class="row g-3">
-                  <div class="col-6">
-                    <%= f.input :amount %>
-                  </div>
-                  <div class="col-6 ">
-                    <%= f.input :terms, collection: %w[monthly quarterly] , include_blank:" Choose Term " %>
-                  </div>
-                </div>
-                 <div>
-                   <%= f.input :start_date %>
-                   <%= f.input :end_date %>
-                   <%= f.input :interest_rate  %>
-                   <%= f.hidden_field 'user_id', value: current_user.id %>
-                 </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-footer mx-3">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <%= f.button :submit, class:"btn btn-primary" %>
-         <% end %>
-      </div>
-
-    </div>
-  </div>
-</div>

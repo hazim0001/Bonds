@@ -1,5 +1,5 @@
 class Bond < ApplicationRecord
-  belongs_to :user
+  belongs_to :asset
 
   enum terms: {
     monthly: 'monthly',

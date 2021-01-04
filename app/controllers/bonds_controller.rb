@@ -7,6 +7,7 @@ class BondsController < ApplicationController
       # sql_query = "model @@ :query OR address @@ :query OR description @@ :query"
       @bonds = Bond.where(sql_query, query: "%#{params[:query]}%")
     else
+      # raise
       @bonds = current_user.bonds
     end
     @total = @bonds.sum(:amount)
