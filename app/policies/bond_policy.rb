@@ -6,15 +6,15 @@ class BondPolicy < ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
-    false
+    record.user == user
   end
 
   def create?
-    false
+    show?
   end
 
   def new?
@@ -22,7 +22,7 @@ class BondPolicy < ApplicationPolicy
   end
 
   def update?
-    false
+    create?
   end
 
   def edit?
@@ -30,6 +30,6 @@ class BondPolicy < ApplicationPolicy
   end
 
   def destroy?
-    false
+    create?
   end
 end
