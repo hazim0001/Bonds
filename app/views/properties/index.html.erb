@@ -1,2 +1,46 @@
-<h1>Properties#index</h1>
-<p>Find me in app/views/properties/index.html.erb</p>
+<div class="container">
+<div class="d-flex justify-content-between mt-2">
+  <h1>properties</h1>
+  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newpropertyModal">Add new property</button>
+</div>
+<h3>All properties total = <%= @total %></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Purchase date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Location</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% counter = 1 %>
+        <% @properties.each do |property| %>
+      <tr>
+          <th scope="row"><%= counter %></th>
+          <td><%= property.created_at.to_date %></td>
+          <td><%= property.value %></td>
+          <td><%= property.location %></td>
+          <td><%= property.description %></td>
+          <td class=" pb-0">
+            <p class="card-text d-flex flex-row-reverse justify-content-between">
+              <%= link_to property_path(property.id), method: :delete, data: { confirm: "Are you sure you want to delete this property?", disable_with: "Processing..." } do %>
+                <i class="far fa-trash-alt" style="color: #ec524b;"></i>
+              <% end %>
+              <button class="m-0" type="button" data-toggle="modal" data-target="#updatepropertyModal<%= property.id %>">
+                <i class="far fa-edit mx-3" style="color: gray;"></i>
+              </button>
+            </p>
+          </td>
+          <%#= render partial: 'update_property_modal', locals:{ property: property } %>
+      </tr>
+          <% counter += 1 %>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+<%#= render partial: 'new_property_modal', locals:{ new_property: @new_property } %>
+
+
+
