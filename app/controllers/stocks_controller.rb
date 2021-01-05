@@ -1,5 +1,16 @@
 class StocksController < ApplicationController
+  before_action :set_stock, only: %i[show edit update destroy]
+
   def index
+    if params[:query].present?
+      # sql_query = "model @@ :query OR address @@ :query OR description @@ :query"
+      @stocks = Stock.where(sql_query, query: "%#{params[:query]}%")
+    else
+      # raise
+      @stocks = current_user.stocks.order(created_at: :desc)
+    end
+    @total = @stocks.sum(:cost_basis).round(2)
+    # @new_stock = Stock.new
   end
 
   def show
@@ -26,6 +37,10 @@ class StocksController < ApplicationController
   end
 
   def destroy
+    asset = @stock.asset
+    authorize @stock
+    @stock.destroy
+    redirect_to asset_stocks_path(asset), notice: "Your stock has been deleted"
   end
 
   private
