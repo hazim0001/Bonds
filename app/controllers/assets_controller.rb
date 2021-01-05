@@ -5,6 +5,7 @@ class AssetsController < ApplicationController
     @new_cash = Cash.new
     @new_property = Property.new
     @new_stock = Stock.new
+    @asset = current_user.asset
   end
 
   def show
