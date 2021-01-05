@@ -49,9 +49,10 @@ class BondsController < ApplicationController
   end
 
   def destroy
+    asset = @bond.asset
     authorize @bond
     @bond.destroy
-    redirect_to bonds_path, notice: "Your bond has been deleted"
+    redirect_to asset_bonds_path(asset), notice: "Your bond has been deleted"
   end
 
   private
