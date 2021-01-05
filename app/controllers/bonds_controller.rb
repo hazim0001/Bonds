@@ -8,7 +8,7 @@ class BondsController < ApplicationController
       @bonds = Bond.where(sql_query, query: "%#{params[:query]}%")
     else
       # raise
-      @bonds = current_user.bonds
+      @bonds = current_user.bonds.order(start_date: :desc)
     end
     @total = @bonds.sum(:amount)
     @new_bond = Bond.new
