@@ -58,24 +58,22 @@
       <div class="d-flex align-items-start mt-5">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">New bond</a>
-          <a class="nav-link mt-3" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">New deposite</a>
+          <a class="nav-link mt-3" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">New deposit</a>
           <a class="nav-link mt-3" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">New property</a>
           <a class="nav-link mt-3" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">New Stock</a>
         </div>
         <div class="tab-content" id="v-pills-tabContent">
           <div class="tab-pane fade show active vw-61" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <%= render 'new_bond' %>
-
-             <!-- add modal partial  -->
           </div>
-          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-             <!-- add modal partial  -->
+          <div class="tab-pane fade vw-61" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+             <%= render 'new_deposit' %>
           </div>
-          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-             <!-- add modal partial  -->
+          <div class="tab-pane fade vw-61" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+             <%= render 'new_property' %>
           </div>
-          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-             <!-- add modal partial  -->
+          <div class="tab-pane fade vw-61" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+             <%= render 'new_stock' %>
           </div>
         </div>
       </div>

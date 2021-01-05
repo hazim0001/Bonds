@@ -10,26 +10,26 @@ class CashPolicy < ApplicationPolicy
   end
 
   def show?
-    raise
+    record.asset == user.asset
   end
 
   def create?
-    raise
+    show?
   end
 
   def new?
-    raise
+    show?
   end
 
   def update?
-    raise
+    show?
   end
 
   def edit?
-    raise
+    show?
   end
 
   def destroy?
-    raise
+    show?
   end
 end

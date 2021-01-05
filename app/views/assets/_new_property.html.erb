@@ -1,29 +1,20 @@
-<%= simple_form_for @new_bond, url: bonds_path, html: { class: "needs-validation ml-5"} do |f| %>
+<%= simple_form_for @new_property, url: properties_path, html: { class: "needs-validation ml-5"} do |f| %>
   <div class="form-group">
-     <%= f.input :amount, input_html: { class:"form-control"}, required: true %>
+     <%= f.input :value, input_html: { class:"form-control"}, required: true %>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
   <div class="form-group">
-    <%= f.input :terms, collection: %w[monthly quarterly] , include_blank:" Choose Term " %>
+    <%= f.input :location %>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
   <div class="form-group">
-    <%= f.input :start_date %>
+    <%= f.input :description %>
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
-  <div class="form-group">
-    <%= f.input :end_date %>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-  </div>
-  <div class="form-group">
-    <%= f.input :interest_rate  %>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-  </div>
+
   <%= f.hidden_field 'asset_id', value: @asset.id %>
   <%= f.button :submit, class:"btn btn-primary" %>
 <% end %>

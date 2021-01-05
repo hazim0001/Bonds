@@ -12,6 +12,6 @@ class Bond < ApplicationRecord
   validate :start_date_cannot_be_greater_than_end_date
 
   def start_date_cannot_be_greater_than_end_date
-    errors.add(start_time, "End date must be greater than start date") if start_date >= end_date
+    errors.add(start_date, "End date must be greater than start date") if start_date >= end_date
   end
 end

@@ -24,12 +24,13 @@ class BondsController < ApplicationController
   # end
 
   def create
+    # raise
     @bond = Bond.new(bond_params)
     authorize @bond
     if @bond.save
-      redirect_to bonds_path, notice: "Your bond has been created"
+      redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has been created"
     else
-      redirect_to bonds_path, notice: "Your bond has NOT been created"
+      redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has NOT been created"
     end
   end
 
@@ -56,7 +57,7 @@ class BondsController < ApplicationController
   private
 
   def bond_params
-    params.require(:bond).permit(:terms, :amount, :start_date, :end_date, :user_id, :interest_rate)
+    params.require(:bond).permit(:terms, :amount, :start_date, :end_date, :asset_id, :interest_rate)
   end
 
   def set_bond

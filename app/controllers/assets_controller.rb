@@ -7,22 +7,4 @@ class AssetsController < ApplicationController
     @new_stock = Stock.new
     @asset = current_user.asset
   end
-
-  def show
-  end
-
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
 end

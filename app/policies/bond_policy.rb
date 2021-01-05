@@ -10,7 +10,7 @@ class BondPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    record.asset == user.asset
   end
 
   def create?

@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   end
 
   resources :assets, only: :index do
-    resources :bonds, only: %i[index create]
-    resources :cashes, only: %i[index create]
-    resources :properties, only: %i[index create]
-    resources :stocks, only: %i[index create]
+    resources :bonds, only: %i[index]
+    resources :cashes, only: %i[index]
+    resources :properties, only: %i[index]
+    resources :stocks, only: %i[index]
   end
 
-  resources :bonds, except: %i[index create]
-  resources :cashes, except: %i[index create]
-  resources :properties, except: %i[index create]
-  resources :stocks, except: %i[index create]
+  resources :bonds, except: %i[index]
+  resources :cashes, except: %i[index]
+  resources :properties, except: %i[index]
+  resources :stocks, except: %i[index]
 end
