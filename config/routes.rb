@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     root to: 'assets#index'
   end
 
-  resources :assets do
+  resources :assets, only: :index do
     resources :bonds, only: %i[index create]
     resources :cashes, only: %i[index create]
     resources :properties, only: %i[index create]
