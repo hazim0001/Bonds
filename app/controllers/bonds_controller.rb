@@ -30,7 +30,7 @@ class BondsController < ApplicationController
     if @bond.save
       redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has been created"
     else
-      redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has NOT been created"
+      redirect_to asset_bonds_path(@bond.asset), flash[:alert] = "Something went wrong 😔"
     end
   end
 

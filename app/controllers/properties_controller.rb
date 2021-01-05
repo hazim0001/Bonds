@@ -14,7 +14,7 @@ class PropertiesController < ApplicationController
     if @property.save
       redirect_to asset_properties_path(@property.asset), notice: "Your property has been created"
     else
-      redirect_to asset_properties_path(@property.asset), notice: "Your property has NOT been created"
+      redirect_to asset_properties_path(@property.asset), flash[:alert] = "Something went wrong 😔"
     end
   end
 
