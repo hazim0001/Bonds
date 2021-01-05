@@ -1,2 +1,44 @@
-<h1>Cashes#index</h1>
-<p>Find me in app/views/cashes/index.html.erb</p>
+<div class="container">
+<div class="d-flex justify-content-between mt-2">
+  <h1>Cash</h1>
+  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newcashModal">Add new cash</button>
+</div>
+<h3>All cash total = <%= @total %></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Deposit date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Source</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% counter = 1 %>
+        <% @cashes.each do |cash| %>
+      <tr>
+          <th scope="row"><%= counter %></th>
+          <td><%= cash.created_at.to_date %></td>
+          <td><%= cash.amount %></td>
+          <td><%= cash.sources %></td>
+          <td class=" pb-0">
+            <p class="card-text d-flex flex-row-reverse justify-content-between">
+              <%= link_to cash_path(cash.id), method: :delete, data: { confirm: "Are you sure you want to delete this cash?", disable_with: "Processing..." } do %>
+                <i class="far fa-trash-alt" style="color: #ec524b;"></i>
+              <% end %>
+             <!--  <button class="m-0" type="button" data-toggle="modal" data-target="#updatecashModal<%= cash.id %>">
+                <i class="far fa-edit mx-3" style="color: gray;"></i>
+              </button> -->
+            </p>
+          </td>
+          <%#= render partial: 'update_cash_modal', locals:{ cash: cash } %>
+      </tr>
+          <% counter += 1 %>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+<%#= render partial: 'new_cash_modal', locals:{ new_cash: @new_cash } %>
+
+
+

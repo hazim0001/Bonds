@@ -1,5 +1,14 @@
 class CashesController < ApplicationController
+  before_action :set_cash, only: %i[show edit update destroy]
   def index
+    if params[:query].present?
+      # sql_query = "model @@ :query OR address @@ :query OR description @@ :query"
+      @cashes = cash.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @cashes = current_user.cashes.order(created_at: :desc)
+    end
+    @total = @cashes.sum(:amount).round(2)
+    # @new_cash = Cash.new
   end
 
   def show
@@ -26,6 +35,10 @@ class CashesController < ApplicationController
   end
 
   def destroy
+    asset = @cash.asset
+    authorize @cash
+    @cash.destroy
+    redirect_to asset_cashes_path(asset), notice: "Your deposit has been deleted"
   end
 
   private
@@ -35,6 +48,6 @@ class CashesController < ApplicationController
   end
 
   def set_cash
-    @bond = Cash.find(params[:id])
+    @cash = Cash.find(params[:id])
   end
 end
