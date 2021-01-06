@@ -8,8 +8,8 @@ class CashesController < ApplicationController
       @cashes = current_user.cashes.order(created_at: :desc)
     end
     @total = @cashes.sum(:amount).round(2)
-    @deposit = CashDeposite.new
-    @withdraw = CashWithdrawal.new
+    @new_deposit = CashDeposit.new
+    @new_withdrawal = CashWithdrawal.new
     # @new_cash = Cash.new
   end
 
