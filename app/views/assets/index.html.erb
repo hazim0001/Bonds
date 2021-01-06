@@ -17,7 +17,7 @@
     <div class="tab-pane container active mt-4" id="assets">
       <div class="d-flex flex-wrap mt-4 gap-5 justify-content-center">
 
-        <%= link_to asset_bonds_path(@asset) do %>
+        <%= link_to asset_bonds_path(@asset), class:"text-decoration-none" do %>
           <div class="card text-center " style="width: 11rem;border-radius: 30px;">
             <div class="card-body">
               <h5 class="card-title">Bonds</h5>
@@ -26,7 +26,7 @@
           </div>
         <% end %>
 
-        <%= link_to asset_cashes_path(@asset) do %>
+        <%= link_to asset_cashes_path(@asset), class:"text-decoration-none" do %>
           <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
             <div class="card-body">
               <h5 class="card-title">Cash</h5>
@@ -34,7 +34,7 @@
             </div>
           </div>
         <% end %>
-        <%= link_to asset_properties_path(@asset) do %>
+        <%= link_to asset_properties_path(@asset), class:"text-decoration-none" do %>
           <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
             <div class="card-body">
               <h5 class="card-title">Properties</h5>
@@ -42,7 +42,7 @@
             </div>
           </div>
         <% end %>
-        <%= link_to asset_stocks_path(@asset) do %>
+        <%= link_to asset_stocks_path(@asset), class:"text-decoration-none" do %>
           <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
             <div class="card-body">
               <h5 class="card-title">Stocks</h5>
