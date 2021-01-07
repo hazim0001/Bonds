@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :asset
   has_many :bonds, through: :asset
-  has_many :cashes, through: :asset
-  has_many :cash_deposits, through: :cashes
+  has_one :cash, through: :asset
+  has_many :cash_deposits, through: :cash
+  has_many :cash_withdrawals, through: :cash
   has_many :properties, through: :asset
   has_many :stocks, through: :asset
 end
