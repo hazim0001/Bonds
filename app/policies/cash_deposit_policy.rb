@@ -14,11 +14,7 @@ class CashDepositPolicy < ApplicationPolicy
   end
 
   def create?
-    raise
-  end
-
-  def new?
-    raise
+    record.cash == user.cash
   end
 
   def update?
