@@ -3,11 +3,11 @@ class CashesController < ApplicationController
   def index
     if params[:query].present?
       # sql_query = "model @@ :query OR address @@ :query OR description @@ :query"
-      @cashes = cash.where(sql_query, query: "%#{params[:query]}%")
+      @cash = cash.where(sql_query, query: "%#{params[:query]}%")
     else
-      @cashes = current_user.cashes.order(created_at: :desc)
+      @cash = current_user.cash
     end
-    @total = @cashes.sum(:amount).round(2)
+    @total = @cash.amount.round(2)
     @new_deposit = CashDeposit.new
     @new_withdrawal = CashWithdrawal.new
     # @new_cash = Cash.new

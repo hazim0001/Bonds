@@ -11,4 +11,10 @@ class CashWithdrawalsController < ApplicationController
 
   def index
   end
+
+  private
+
+  def cash_withdrawal_params
+    params.require(:cash_withdrawal).permit(:reason, :amount, :cash_id)
+  end
 end

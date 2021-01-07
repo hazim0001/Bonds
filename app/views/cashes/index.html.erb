@@ -19,20 +19,20 @@
     </thead>
     <tbody>
         <% counter = 1 %>
-        <% @cashes.each do |cash| %>
+        <%# @cash.each do |cash| %>
       <tr>
-          <th scope="row"><%= counter %></th>
-          <td><%= cash.created_at.to_date %></td>
-          <td><%= cash.amount %></td>
-          <td><%= cash.sources %></td>
-          <td class=" pb-0 text-left w-25">
-            <%= link_to cash_path(cash.id), method: :delete, data: { confirm: "Are you sure you want to delete this cash?", disable_with: "Processing..." } do %>
-              <i class="far fa-trash-alt" style="color: #ec524b;"></i>
-            <% end %>
-          </td>
+          <!-- <th scope="row"><%#= counter %></th> -->
+          <!-- <td><%#= cash.created_at.to_date %></td> -->
+          <!-- <td><%#= cash.amount %></td> -->
+          <!-- <td><%#= cash.sources %></td> -->
+          <!-- <td class=" pb-0 text-left w-25"> -->
+            <%#= link_to cash_path(cash.id), method: :delete, data: { confirm: "Are you sure you want to delete this cash?", disable_with: "Processing..." } do %>
+              <!-- <i class="far fa-trash-alt" style="color: #ec524b;"></i> -->
+            <%# end %>
+          <!-- </td> -->
       </tr>
           <% counter += 1 %>
-        <% end %>
+        <%# end %>
     </tbody>
   </table>
 </div>

@@ -21,6 +21,7 @@
                   </div>
                   <div class="col-12 ">
                     <%= f.input :reason %>
+                    <%= f.hidden_field 'cash_id', value: current_user.cash.id %>
                   </div>
                 </div>
             </div>
