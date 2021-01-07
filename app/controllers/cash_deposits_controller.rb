@@ -8,6 +8,7 @@ class CashDepositsController < ApplicationController
     @cash.update(amount: @cash.amount + @cash_deposit.amount)
     authorize @cash_deposit
     if @cash_deposit.save
+      CashTransaction.create(user: current_user, amount: cash_deposit.amount, action: "deposit")
       redirect_to asset_cashes_path(@cash.asset), notice: "Your deposit has been made"
     else
       redirect_to asset_cashes_path(@cash.asset), notice: "Your cash deposit has NOT been made"
