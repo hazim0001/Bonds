@@ -3,7 +3,16 @@ class CashWithdrawalsController < ApplicationController
   end
 
   def create
-    raise
+    # raise
+    @cash_withdrawal = CashWithdrawal.new(cash_withdrawal_params)
+    @cash = @cash_withdrawal.cash
+    @cash.update(amount: @cash.amount - @cash_withdrawal.amount)
+    authorize @cash_withdrawal
+    if @cash_withdrawal.save
+      redirect_to asset_cashes_path(@cash.asset), notice: "Your withdrawal has been made"
+    else
+      redirect_to asset_cashes_path(@cash.asset), notice: "Your cash withdrawal has NOT been made"
+    end
   end
 
   def destroy
