@@ -10,9 +10,9 @@ class CashesController < ApplicationController
     @total = @cash.amount.round(2)
     @new_deposit = CashDeposit.new
     @new_withdrawal = CashWithdrawal.new
-    @cash_transactions = []
+    @cash_transactions = current_user.cash_transactions.order(created_at: :desc)
 
-    raise
+    # raise
     # @new_cash = Cash.new
   end
 
@@ -37,12 +37,15 @@ class CashesController < ApplicationController
   end
 
   def update
+    authorize @cash
+    raise
   end
 
   def destroy
     asset = @cash.asset
     authorize @cash
-    @cash.destroy
+    raise
+    # @cash.destroy
     redirect_to asset_cashes_path(asset), notice: "Your deposit has been deleted"
   end
 

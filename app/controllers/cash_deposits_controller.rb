@@ -8,7 +8,7 @@ class CashDepositsController < ApplicationController
     @cash.update(amount: @cash.amount + @cash_deposit.amount)
     authorize @cash_deposit
     if @cash_deposit.save
-      CashTransaction.create(user: current_user, amount: cash_deposit.amount, action: "deposit")
+      create_cash_transaction
       redirect_to asset_cashes_path(@cash.asset), notice: "Your deposit has been made"
     else
       redirect_to asset_cashes_path(@cash.asset), notice: "Your cash deposit has NOT been made"
@@ -25,5 +25,14 @@ class CashDepositsController < ApplicationController
 
   def cash_deposit_params
     params.require(:cash_deposit).permit(:source, :amount, :cash_id)
+  end
+
+  def create_cash_transaction
+    CashTransaction.create(
+      user: current_user,
+      amount: @cash_deposit.amount,
+      action: "deposit",
+      details: "From #{@cash_deposit.source}"
+    )
   end
 end
