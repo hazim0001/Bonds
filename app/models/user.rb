@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :cash_withdrawals, through: :cash
   has_many :properties, through: :asset
   has_many :stocks, through: :asset
+  has_many :cash_transactions
 end
