@@ -10,6 +10,9 @@ class CashesController < ApplicationController
     @total = @cash.amount.round(2)
     @new_deposit = CashDeposit.new
     @new_withdrawal = CashWithdrawal.new
+    @cash_transactions = []
+
+    raise
     # @new_cash = Cash.new
   end
 
