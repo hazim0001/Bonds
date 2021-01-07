@@ -2,7 +2,10 @@
   <%= render 'shared/back' %>
 <div class="d-flex justify-content-between mt-2">
   <h1>Cash</h1>
-  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newcashModal">Add new cash</button>
+  <div class="d-flex">
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#cashDepositModal">Deposit</button>
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#cashWithdrawalModal">Withdrawal</button>
+  </div>
 </div>
 <h3>All cash total = <%= @total %></h3>
   <table class="table">
@@ -34,8 +37,8 @@
   </table>
 </div>
 <%#= render partial: 'new_cash_modal', locals:{ new_cash: @new_cash } %>
-<%= render partial: 'cash_deposits/new_cash_deposit_modal', locals:{ new_cash: @new_deposit } %>
-<%= render partial: 'cash_withdrawals/new_cash_withdrawal_modal', locals:{ new_cash: @new_withdrawal } %>
+<%= render partial: 'cash_deposits/new_cash_deposit_modal', locals:{ new_deposit: @new_deposit } %>
+<%= render partial: 'cash_withdrawals/new_cash_withdrawal_modal', locals:{ new_withdrawal: @new_withdrawal } %>
 
 
 

@@ -3,6 +3,7 @@ class CashWithdrawalsController < ApplicationController
   end
 
   def create
+    raise
   end
 
   def destroy
