@@ -6,7 +6,7 @@ class CashWithdrawalsController < ApplicationController
     # raise
     @cash_withdrawal = CashWithdrawal.new(cash_withdrawal_params)
     @cash = @cash_withdrawal.cash
-    @cash.update(amount: @cash.amount - @cash_withdrawal.amount)
+    @cash.update(amount: @cash.amount_cents - @cash_withdrawal.amount_cents)
     authorize @cash_withdrawal
     if @cash_withdrawal.save
       create_cash_transaction
@@ -31,7 +31,7 @@ class CashWithdrawalsController < ApplicationController
   def create_cash_transaction
     CashTransaction.create(
       user: current_user,
-      amount: @cash_withdrawal.amount,
+      amount_cents: @cash_withdrawal.amount_cents,
       action: "withdraw",
       details: "For #{@cash_withdrawal.reason}"
     )

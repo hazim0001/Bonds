@@ -5,7 +5,7 @@ class CashDepositsController < ApplicationController
   def create
     @cash_deposit = CashDeposit.new(cash_deposit_params)
     @cash = @cash_deposit.cash
-    @cash.update(amount: @cash.amount + @cash_deposit.amount)
+    @cash.update(amount: @cash.amount_cents + @cash_deposit.amount_cents)
     authorize @cash_deposit
     if @cash_deposit.save
       create_cash_transaction
@@ -30,7 +30,7 @@ class CashDepositsController < ApplicationController
   def create_cash_transaction
     CashTransaction.create(
       user: current_user,
-      amount: @cash_deposit.amount,
+      amount_cents: @cash_deposit.amount_cents,
       action: "deposit",
       details: "From #{@cash_deposit.source}"
     )

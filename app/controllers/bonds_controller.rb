@@ -9,7 +9,7 @@ class BondsController < ApplicationController
     else
       @bonds = current_user.bonds.order(created_at: :desc)
     end
-    @total = @bonds.sum(:amount)
+    @total = @bonds.sum(:amount_cents)
     @new_bond = Bond.new
   end
 
@@ -57,13 +57,13 @@ class BondsController < ApplicationController
   private
 
   def add_returns
-    @bond.annual_return = ((@bond.interest_rate / 100) * @bond.amount).round(2)
+    @bond.annual_return_cents = ((@bond.interest_rate / 100) * @bond.amount_cents).round(2)
     if @bond.terms == "monthly"
-      @bond.monthly_return = (@bond.annual_return / 12).round(2)
-      @bond.compound = (@bond.amount * (1 + (@bond.interest_rate / 100) / 12)**(12 * @bond.period)).round(2)
+      @bond.monthly_return_cents = (@bond.annual_return_cents / 12).round(2)
+      @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 12)**(12 * @bond.period)).round(2)
     else
-      @bond.quarterly_return = (@bond.annual_return / 4).round(2)
-      @bond.compound = (@bond.amount * (1 + (@bond.interest_rate / 100) / 4)**(4 * @bond.period)).round(2)
+      @bond.quarterly_return_cents = (@bond.annual_return_cents / 4).round(2)
+      @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 4)**(4 * @bond.period)).round(2)
     end
   end
 

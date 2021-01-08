@@ -9,7 +9,7 @@ class StocksController < ApplicationController
       # raise
       @stocks = current_user.stocks.order(created_at: :desc)
     end
-    @total = @stocks.sum(:cost_basis).round(2)
+    @total = @stocks.sum(:cost_basis_cents)
     # @new_stock = Stock.new
   end
 
@@ -22,7 +22,7 @@ class StocksController < ApplicationController
   def create
     @stock = Stock.new(stock_params)
     authorize @stock
-    @stock.cost_basis = @stock.position * @stock.average_price
+    @stock.cost_basis_cents = @stock.position * @stock.average_price_cents
     if @stock.save
       redirect_to asset_stocks_path(@stock.asset), notice: "Your stock has been created"
     else
