@@ -7,8 +7,7 @@ class BondsController < ApplicationController
       # sql_query = "model @@ :query OR address @@ :query OR description @@ :query"
       @bonds = Bond.where(sql_query, query: "%#{params[:query]}%")
     else
-      # raise
-      @bonds = current_user.bonds.order(start_date: :desc)
+      @bonds = current_user.bonds.order(created_at: :desc)
     end
     @total = @bonds.sum(:amount)
     @new_bond = Bond.new
@@ -24,7 +23,6 @@ class BondsController < ApplicationController
   # end
 
   def create
-    # raise
     @bond = Bond.new(bond_params)
     add_returns
     authorize @bond
@@ -59,14 +57,14 @@ class BondsController < ApplicationController
   private
 
   def add_returns
-    # A = P (1 + r/n)** (nt)
-    # @bond.annual_return = (@bond.interest_rate / 100) * @bond.amount
-    # if @bond.terms == "monthly"
-    #   @bond.monthly_return = @bond.annual_return / 12
-    #   @bond.compound = @bond.amount * (1 + (@bond.interest_rate / 100) / )
-    # else
-    #   @bond.quarterly_return = @bond.annual_return / 4
-    # end
+    @bond.annual_return = ((@bond.interest_rate / 100) * @bond.amount).round(2)
+    if @bond.terms == "monthly"
+      @bond.monthly_return = (@bond.annual_return / 12).round(2)
+      @bond.compound = (@bond.amount * (1 + (@bond.interest_rate / 100) / 12)**(12 * @bond.period)).round(2)
+    else
+      @bond.quarterly_return = (@bond.annual_return / 4).round(2)
+      @bond.compound = (@bond.amount * (1 + (@bond.interest_rate / 100) / 4)**(4 * @bond.period)).round(2)
+    end
   end
 
   def bond_params
