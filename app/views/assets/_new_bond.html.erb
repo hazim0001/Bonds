@@ -4,10 +4,21 @@
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Please fill out this field.</div>
   </div>
-  <div class="form-group">
-    <%= f.input :terms, collection: %w[monthly quarterly] , include_blank:" Choose Term " %>
-    <div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.input :terms, collection: %w[monthly quarterly] , include_blank:" Choose Term " %>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <%= f.input :period, collection: 1..10, selected: 3, hint: "Period in years" %>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <%= f.input :start_date %>

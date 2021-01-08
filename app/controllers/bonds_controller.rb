@@ -26,6 +26,7 @@ class BondsController < ApplicationController
   def create
     # raise
     @bond = Bond.new(bond_params)
+    add_returns
     authorize @bond
     if @bond.save
       redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has been created"
@@ -57,8 +58,19 @@ class BondsController < ApplicationController
 
   private
 
+  def add_returns
+    # A = P (1 + r/n)** (nt)
+    # @bond.annual_return = (@bond.interest_rate / 100) * @bond.amount
+    # if @bond.terms == "monthly"
+    #   @bond.monthly_return = @bond.annual_return / 12
+    #   @bond.compound = @bond.amount * (1 + (@bond.interest_rate / 100) / )
+    # else
+    #   @bond.quarterly_return = @bond.annual_return / 4
+    # end
+  end
+
   def bond_params
-    params.require(:bond).permit(:terms, :amount, :start_date, :end_date, :asset_id, :interest_rate)
+    params.require(:bond).permit(:terms, :amount, :start_date, :end_date, :asset_id, :interest_rate, :period)
   end
 
   def set_bond
