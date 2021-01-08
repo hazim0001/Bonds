@@ -1,5 +1,10 @@
 class Bond < ApplicationRecord
   belongs_to :asset
+  monetize :amount_cents
+  monetize :annual_return_cents
+  monetize :monthly_return_cents
+  monetize :quarterly_return_cents
+  monetize :compound_cents
 
   enum terms: {
     monthly: 'monthly',
