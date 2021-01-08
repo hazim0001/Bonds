@@ -9,7 +9,7 @@ class BondsController < ApplicationController
     else
       @bonds = current_user.bonds.order(created_at: :desc)
     end
-    @total = @bonds.sum(:amount_cents)
+    @total = @bonds.sum(:amount_cents) / 100
     @new_bond = Bond.new
   end
 
@@ -29,7 +29,7 @@ class BondsController < ApplicationController
     if @bond.save
       redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has been created"
     else
-      redirect_to asset_bonds_path(@bond.asset), flash[:alert] = "Something went wrong 😔"
+      redirect_to asset_bonds_path(@bond.asset), alert: "Something went wrong 😔"
     end
   end
 
@@ -57,13 +57,13 @@ class BondsController < ApplicationController
   private
 
   def add_returns
-    @bond.annual_return_cents = ((@bond.interest_rate / 100) * @bond.amount_cents).round(2)
+    @bond.annual_return_cents = ((@bond.interest_rate / 100) * @bond.amount_cents).to_i
     if @bond.terms == "monthly"
-      @bond.monthly_return_cents = (@bond.annual_return_cents / 12).round(2)
-      @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 12)**(12 * @bond.period)).round(2)
+      @bond.monthly_return_cents = (@bond.annual_return_cents / 12)
+      @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 12)**(12 * @bond.period)).to_i
     else
-      @bond.quarterly_return_cents = (@bond.annual_return_cents / 4).round(2)
-      @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 4)**(4 * @bond.period)).round(2)
+      @bond.quarterly_return_cents = (@bond.annual_return_cents / 4)
+      @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 4)**(4 * @bond.period)).to_i
     end
   end
 

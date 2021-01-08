@@ -11,7 +11,7 @@ class Bond < ApplicationRecord
     quarterly: 'quarterly'
   }
 
-  validates :amount, presence: true, numericality: { only_integer: true }
+  validates :amount_cents, presence: true
   validates :interest_rate, presence: true, numericality: true
 
   validate :start_date_cannot_be_greater_than_end_date

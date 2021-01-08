@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_100952) do
+ActiveRecord::Schema.define(version: 2021_01_08_171042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assets", force: :cascade do |t|
-    t.integer "total_value_cents"
+    t.integer "total_value_cents", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -29,20 +29,20 @@ ActiveRecord::Schema.define(version: 2021_01_08_100952) do
     t.date "start_date"
     t.date "end_date"
     t.float "interest_rate"
-    t.integer "amount_cents"
+    t.integer "amount_cents", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "asset_id"
-    t.integer "annual_return_cents"
-    t.integer "monthly_return_cents"
-    t.integer "quarterly_return_cents"
-    t.integer "compound_cents"
+    t.integer "annual_return_cents", default: 0
+    t.integer "monthly_return_cents", default: 0
+    t.integer "quarterly_return_cents", default: 0
+    t.integer "compound_cents", default: 0
     t.index ["asset_id"], name: "index_bonds_on_asset_id"
   end
 
   create_table "cash_deposits", force: :cascade do |t|
     t.bigint "cash_id", null: false
-    t.integer "amount_cents"
+    t.integer "amount_cents", default: 0
     t.string "source"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_100952) do
 
   create_table "cash_transactions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "amount_cents"
+    t.integer "amount_cents", default: 0
     t.string "action"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_100952) do
   end
 
   create_table "cash_withdrawals", force: :cascade do |t|
-    t.integer "amount_cents"
+    t.integer "amount_cents", default: 0
     t.string "reason"
     t.bigint "cash_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_100952) do
   end
 
   create_table "cashes", force: :cascade do |t|
-    t.integer "amount_cents"
+    t.integer "amount_cents", default: 0
     t.bigint "asset_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_100952) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer "value_cents"
+    t.integer "value_cents", default: 0
     t.text "description"
     t.string "location"
     t.bigint "asset_id", null: false
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 2021_01_08_100952) do
     t.string "symbol"
     t.string "instrument"
     t.float "position"
-    t.integer "average_price_cents"
-    t.integer "cost_basis_cents"
+    t.integer "average_price_cents", default: 0
+    t.integer "cost_basis_cents", default: 0
     t.bigint "asset_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

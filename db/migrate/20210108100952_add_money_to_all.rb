@@ -44,26 +44,5 @@ class AddMoneyToAll < ActiveRecord::Migration[6.0]
     change_column :bonds, :monthly_return_cents, :integer
     change_column :bonds, :quarterly_return_cents, :integer
     change_column :bonds, :compound_cents, :integer
-
-    # add_monetize :assets, :total_value
-
-    # add_monetize :cashes, :amount
-
-    # add_monetize :cash_deposits, :amount
-
-    # add_monetize :cash_transactions, :amount
-
-    # add_monetize :cash_withdrawals, :amount
-
-    # add_monetize :properties, :value
-
-    # add_monetize :stocks, :cost_basis
-    # add_monetize :stocks, :average_price
-
-    # add_monetize :bonds, :amount
-    # add_monetize :bonds, :annual_return
-    # add_monetize :bonds, :monthly_return
-    # add_monetize :bonds, :quarterly_return
-    # add_monetize :bonds, :compound
   end
 end
