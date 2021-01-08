@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
     else
       @properties = current_user.properties.order(created_at: :desc)
     end
-    @total = @properties.sum(:value).round(2)
+    @total = @properties.sum(:value_cents).round(2)
   end
 
   def show
