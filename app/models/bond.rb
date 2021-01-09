@@ -1,5 +1,6 @@
 class Bond < ApplicationRecord
   belongs_to :asset
+  has_many :payouts
   monetize :amount_cents
   monetize :annual_return_cents
   monetize :monthly_return_cents

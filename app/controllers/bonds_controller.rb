@@ -24,10 +24,10 @@ class BondsController < ApplicationController
 
   def create
     @bond = Bond.new(bond_params)
+      # raise
     add_returns
     authorize @bond
     if @bond.save
-      raise
       redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has been created"
     else
       redirect_to asset_bonds_path(@bond.asset), alert: "Something went wrong 😔"
@@ -62,9 +62,33 @@ class BondsController < ApplicationController
     if @bond.terms == "monthly"
       @bond.monthly_return_cents = (@bond.annual_return_cents / 12)
       @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 12)**(12 * @bond.period)).to_i
+      # creating payouts
+      counter = 1
+      total_payouts = @bond.period * 12
+      total_payouts.times do
+        Payout.create(
+          amount_cents: @bond.monthly_return_cents,
+          bond: @bond,
+          payout_date: @bond.start_date + counter.months
+        )
+        counter += 1
+      end
     else
       @bond.quarterly_return_cents = (@bond.annual_return_cents / 4)
       @bond.compound_cents = (@bond.amount_cents * (1 + (@bond.interest_rate / 100) / 4)**(4 * @bond.period)).to_i
+      # creating payouts
+      payouts = [3]
+      total_payouts_quarterly = @bond.period * 4
+      (total_payouts_quarterly - 1).times do
+        payouts << (payouts.last + 3)
+      end
+      payouts.each do |payout|
+        Payout.create(
+          amount_cents: @bond.quarterly_return_cents,
+          bond: @bond,
+          payout_date: @bond.start_date + payout.months
+        )
+      end
     end
   end
 

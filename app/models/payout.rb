@@ -1,4 +1,4 @@
 class Payout < ApplicationRecord
   belongs_to :bond
-  monetize :amount
+  monetize :amount_cents
 end
