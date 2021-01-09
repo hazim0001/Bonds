@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_171042) do
+ActiveRecord::Schema.define(version: 2021_01_09_221534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 2021_01_08_171042) do
     t.index ["asset_id"], name: "index_cashes_on_asset_id"
   end
 
+  create_table "payouts", force: :cascade do |t|
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
+    t.datetime "payout_date"
+    t.bigint "bond_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bond_id"], name: "index_payouts_on_bond_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.integer "value_cents", default: 0
     t.text "description"
@@ -119,6 +129,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_171042) do
   add_foreign_key "cash_transactions", "users"
   add_foreign_key "cash_withdrawals", "cashes"
   add_foreign_key "cashes", "assets"
+  add_foreign_key "payouts", "bonds"
   add_foreign_key "properties", "assets"
   add_foreign_key "stocks", "assets"
 end

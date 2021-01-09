@@ -27,6 +27,7 @@ class BondsController < ApplicationController
     add_returns
     authorize @bond
     if @bond.save
+      raise
       redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has been created"
     else
       redirect_to asset_bonds_path(@bond.asset), alert: "Something went wrong 😔"

@@ -86,8 +86,15 @@
 
   <div class="container mt-4">
 
-    <%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
-      <%= date.day %>
+    <%= month_calendar(events: @bonds, attribute: :start_date, end_attribute: :end_date) do |date, bonds| %>
+      <strong><%= date.day %></strong>
+      <hr class="m-0">
+
+      <% bonds.each do |bond| %>
+        <div>
+          <%= bond.quarterly_return_cents %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
