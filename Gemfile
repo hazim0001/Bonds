@@ -26,6 +26,8 @@ gem 'pundit'
 # gem 'image_processing', '~> 1.2'
 gem 'money-rails', '~>1.12'
 
+gem 'simple_calendar', '~> 2.4', '>= 2.4.1'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

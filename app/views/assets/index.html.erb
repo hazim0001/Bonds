@@ -84,6 +84,13 @@
     </div>
   </div>
 
+  <div class="container mt-4">
+
+    <%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
+      <%= date.day %>
+    <% end %>
+  </div>
+
 </div>
 <style>
   .vw-61{
