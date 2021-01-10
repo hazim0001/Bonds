@@ -18,13 +18,12 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    raise
     @property = Property.new(property_params)
     authorize @property
     if @property.save
       redirect_to asset_properties_path(@property.asset), notice: "Your property has been created"
     else
-      redirect_to asset_properties_path(@property.asset), flash[:alert] = "Something went wrong 😔"
+      redirect_to asset_properties_path(@property.asset), alert: "Something went wrong 😔"
     end
   end
 
