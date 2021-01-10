@@ -1,5 +1,16 @@
 .simple-calendar {
-  border: 1px solid red;
+  // border: 1px solid red;
+  a{
+    border:1px solid black;
+    padding:7px 25px;
+    text-decoration: none;
+    border-radius:30px;
+    color:black;
+    &:hover {
+      text-decoration: none;
+      color:black;
+    }
+  }
 
   .day {}
 
@@ -12,7 +23,14 @@
   .wday-6 {}
 
   .today {
-    border: 2px solid black !important;
+    background-color: white !important;
+
+    strong{
+      background-color: rgba(207, 27, 27,0.9);
+      color: white;
+      padding: 1px 4px;
+      border-radius:50%;
+    }
   }
   .past {}
   .future {}

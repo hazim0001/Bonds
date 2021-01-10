@@ -3,9 +3,13 @@
   <%= month_calendar(events: payouts, attribute: :payout_date, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link) do |date, payouts| %>
   <%#= raise %>
   <% if date.friday? || date.saturday? %>
-    <strong style="color: red;"><%= date.day %></strong>
+    <div class="d-flex flex-row-reverse">
+      <strong style="color: red;"><%= date.day %></strong>
+    </div>
   <% else %>
-    <strong><%= date.day %></strong>
+    <div class="d-flex flex-row-reverse">
+      <strong><%= date.day %></strong>
+    </div>
   <% end %>
     <hr class="m-0 mb-2">
 
