@@ -10,31 +10,64 @@
     <hr class="m-0 mb-2">
 
     <% if payouts.any? %>
-    <% payouts_amounts = [] %>
+      <% payouts_amounts = [] %>
       <% payouts.each do |payout| %>
       <% payouts_amounts << payout.amount %>
         <div class="font-right-small d-flex justify-content-between mx-2" >
-          <i class="fas fa-money-bill"></i>
+          <i class="fas fa-money-bill" style="color: gray;"></i>
           <p class="m-0"><%= humanized_money(payout.amount) %></p>
         </div>
       <% end %>
       <div class="m-0">
-        <hr class="m-0 mb-1">
+        <hr class="m-0 mb-1 ">
         <div class="font-right-small d-flex justify-content-between mx-2" >
           <p class="m-0" style="font-weight: bold;">Total</p>
-          <p class="m-0"><%= humanized_money(payouts_amounts.sum) %></p>
+
+          <p class="m-0 total_payout"><%= humanized_money(payouts_amounts.sum) %></p>
         </div>
       </div>
 
     <% end %>
-  <% end %>
-</div>
-<style>
-  .red{
-    color: red;
-  }
 
-  .font-right-small{
-    font-size:0.7rem !important;
-  }
-</style>
+
+
+  <% end %>
+    <div class="d-flex justify-content-between">
+      <h4>
+        This month's Payouts total
+      </h4>
+      <h4>
+        <%#= raise %>
+        <%# total = payouts.sum(:amount_cents) %>
+        <%#= humanized_money(total) %>
+      </h4>
+    </div>
+
+
+</div>
+
+<script>
+
+   // const payouts = document.querySelectorAll('.total_payout')
+   // let payoutTotals = []
+   // payouts.forEach((payout) => {
+    // payoutTotals.push(Number(payout.innerText))
+   // });
+  // console.log(payoutTotals)
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
