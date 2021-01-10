@@ -6,6 +6,5 @@ class AssetsController < ApplicationController
     @new_property = Property.new
     @new_stock = Stock.new
     @asset = current_user.asset
-    @bonds = @asset.bonds
   end
 end

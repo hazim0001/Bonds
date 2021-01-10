@@ -28,6 +28,8 @@ gem 'money-rails', '~>1.12'
 
 gem 'simple_calendar', '~> 2.4', '>= 2.4.1'
 
+gem 'jquery-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

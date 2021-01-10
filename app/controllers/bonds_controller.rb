@@ -11,6 +11,7 @@ class BondsController < ApplicationController
     end
     @total = @bonds.sum(:amount_cents) / 100
     @new_bond = Bond.new
+    @payouts = current_user.payouts
   end
 
   def show
@@ -24,7 +25,6 @@ class BondsController < ApplicationController
 
   def create
     @bond = Bond.new(bond_params)
-      # raise
     add_returns
     authorize @bond
     if @bond.save

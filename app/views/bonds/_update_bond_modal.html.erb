@@ -18,7 +18,7 @@
               <%= simple_form_for bond, url: bond_path(bond.id) do |f| %>
                 <div class="row g-3">
                   <div class="col-6">
-                    <%= f.input :amount %>
+                    <%= f.input :amount, html: {id:"#{bond.id}"} %>
                   </div>
                   <div class="col-6 ">
                     <%= f.input :terms, collection: %w[monthly quarterly] , include_blank:" Choose Term " %>

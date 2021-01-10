@@ -62,7 +62,43 @@
 <%#= render partial: 'new_bond_modal', locals:{ new_bond: @new_bond } %>
 
 
+<div id="payouts_calendar">
+  <%= render partial: "payouts", locals: {payouts: @payouts} %>
+</div>
+<script>
+  $("#payouts_calendar").html("<%= escape_javascript render(partial: "payouts", locals: {payouts: @payouts}) %>");
+</script>
 <style>
+  .simple-calendar {
+    border: 1px solid red;
+  }
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+  .calendar-heading{
+    display: flex;
+    justify-content: space-around;
+    height: 5rem;
+  }
+
   .w-1vw{
     width: 2vw;
   }
