@@ -19,7 +19,7 @@
       <% payouts_amounts << payout.amount %>
         <div class="font-right-small d-flex justify-content-between mx-2" >
           <i class="fas fa-money-bill" style="color: gray;"></i>
-          <p class="m-0"><%= humanized_money(payout.amount) %></p>
+          <p class="m-0" data-toggle="tooltip" title="<%= payout.bond.terms.capitalize %> <%= humanized_money(payout.bond.amount) %>"><%= humanized_money(payout.amount) %></p>
         </div>
       <% end %>
       <div class="m-0">
@@ -63,7 +63,11 @@
 
 </script>
 
-
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 
 
