@@ -11,9 +11,9 @@
       <strong><%= date.day %></strong>
     </div>
   <% end %>
-    <hr class="m-0 mb-2">
 
     <% if payouts.any? %>
+      <hr class="m-0 mb-2">
       <% payouts_amounts = [] %>
       <% payouts.each do |payout| %>
       <% payouts_amounts << payout.amount %>
