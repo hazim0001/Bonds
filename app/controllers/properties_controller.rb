@@ -18,6 +18,7 @@ class PropertiesController < ApplicationController
   end
 
   def create
+    raise
     @property = Property.new(property_params)
     authorize @property
     if @property.save
