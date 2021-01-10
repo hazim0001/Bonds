@@ -34,4 +34,12 @@ import "jquery";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+
+  let days = document.getElementsByTagName('th')
+  Object.keys(days).forEach((index) => {
+    if (days[index].innerText == "Fri" || days[index].innerText == "Sat") {
+      days[index].classList.add("red-bg");
+    }
+  })
+
 });

@@ -2,7 +2,10 @@
   <%= render 'shared/back' %>
 <div class="d-flex justify-content-between mt-2">
   <h1>Bonds</h1>
-  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newBondModal">Add new Bond</button>
+  <div class="h-50">
+    <%= link_to 'Bonds payouts schedual', payouts_path, class:"btn btn-outline-primary mr-3" %>
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newBondModal">Add new Bond</button>
+  </div>
 </div>
 <h3>All bonds total = <%= humanized_money(@total) %></h3>
   <table class="table">
@@ -62,44 +65,8 @@
 <%#= render partial: 'new_bond_modal', locals:{ new_bond: @new_bond } %>
 
 
-<div id="payouts_calendar">
-  <%= render partial: "payouts", locals: {payouts: @payouts} %>
-</div>
-<script>
-  $("#payouts_calendar").html("<%= escape_javascript render(partial: "payouts", locals: {payouts: @payouts}) %>");
-</script>
 <style>
-  .simple-calendar {
-    border: 1px solid red;
-  }
-  .day {}
-
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
-
-  .today {}
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month {}
-  .next-month { }
-  .current-month {}
-
-  .has-events {}
-  .calendar-heading{
-    display: flex;
-    justify-content: space-around;
-    height: 5rem;
-  }
-
   .w-1vw{
-    width: 2vw;
+    width: 1.5vw;
   }
 </style>

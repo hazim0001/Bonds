@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'cash_deposits/new'
-  get 'cash_deposits/create'
-  get 'cash_deposits/destroy'
-  get 'cash_deposits/index'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # root to: 'pages#home'
@@ -11,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :assets, only: :index do
-    resources :bonds, only: %i[index]
+    resources :bonds, only: :index
     resources :cashes, only: %i[index]
     resources :properties, only: %i[index]
     resources :stocks, only: %i[index]
@@ -25,4 +21,5 @@ Rails.application.routes.draw do
   resources :stocks, except: %i[index]
   resources :cash_deposits, except: %i[index edit update show]
   resources :cash_withdrawals, except: %i[index edit update show]
+  resources :payouts, only: :index
 end
