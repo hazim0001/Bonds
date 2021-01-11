@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_10_210230) do
+ActiveRecord::Schema.define(version: 2021_01_11_073550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,8 +78,7 @@ ActiveRecord::Schema.define(version: 2021_01_10_210230) do
   end
 
   create_table "payouts", force: :cascade do |t|
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "USD", null: false
+    t.bigint "amount_cents", default: 0, null: false
     t.datetime "payout_date"
     t.bigint "bond_id", null: false
     t.datetime "created_at", precision: 6, null: false

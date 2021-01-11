@@ -1,4 +1,6 @@
 class Bond < ApplicationRecord
+  before_save :set_period
+
   belongs_to :asset
   has_many :payouts
   monetize :amount_cents
@@ -20,4 +22,11 @@ class Bond < ApplicationRecord
   def start_date_cannot_be_greater_than_end_date
     errors.add(start_date, "End date must be greater than start date") if start_date >= end_date
   end
+
+  private
+
+  def set_period
+    self.period =  ((end_date - start_date) / 365).floor
+  end
+
 end
