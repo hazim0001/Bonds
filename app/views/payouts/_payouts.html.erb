@@ -21,7 +21,8 @@
           <% if payout.bond.payouts.last == payout %>
           <% payouts_amounts << payout.bond.amount %>
           <i class="fas fa-money-bill" style="color: red;"></i>
-          <p class="m-0" style="color:red;" data-toggle="tooltip" title="<%= payout.bond.terms.capitalize %> <%= humanized_money(payout.bond.amount) %>"><%= humanized_money(payout.amount) %></p>
+          <p class="m-0" style="color:red;" data-toggle="tooltip" title="<%= payout.bond.terms.capitalize %> <%= humanized_money(payout.bond.amount) %>
+            Last Day"><%= humanized_money(payout.amount) %></p>
           <% else %>
             <i class="fas fa-money-bill" style="color: gray;"></i>
             <p class="m-0" data-toggle="tooltip" title="<%= payout.bond.terms.capitalize %> <%= humanized_money(payout.bond.amount) %>"><%= humanized_money(payout.amount) %></p>

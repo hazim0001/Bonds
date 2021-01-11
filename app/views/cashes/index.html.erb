@@ -7,7 +7,7 @@
     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#cashDepositModal">Deposit</button>
   </div>
 </div>
-<h3>All cash total = <%= @total %></h3>
+<h3>All cash total = <%= humanized_money(@total) %></h3>
   <table class="table">
     <thead>
       <tr>
@@ -24,9 +24,9 @@
           <th scope="row"><%= counter %></th>
           <td><%= cash.created_at.to_date %></td>
           <% if cash.action == "deposit" %>
-            <td><i class="fas fa-arrow-down mr-2" style="color: #32cd32;"></i> <%= cash.amount %></td>
+            <td><i class="fas fa-arrow-down mr-2" style="color: #32cd32;"></i> <%= humanized_money(cash.amount) %></td>
           <% else %>
-            <td><i class="fas fa-arrow-up mr-2" style="color:#ec524b;"></i> <%= cash.amount %></td>
+            <td><i class="fas fa-arrow-up mr-2" style="color:#ec524b;"></i> <%= humanized_money(cash.amount) %></td>
           <% end %>
           <td><%= cash.details %></td>
           <td class=" pb-0 text-left w-25">
