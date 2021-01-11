@@ -1,6 +1,6 @@
 class BondsController < ApplicationController
   before_action :set_bond, only: %i[show edit update destroy]
-
+  # before_action :job, only: :index
 
   def index
     # raise
@@ -95,7 +95,7 @@ class BondsController < ApplicationController
   end
 
   def set_period
-    @bond.period =  ((@bond.end_date - @bond.start_date) / 365).floor
+    @bond.period = ((@bond.end_date - @bond.start_date) / 365).floor
   end
 
   def bond_params

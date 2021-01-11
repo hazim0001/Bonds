@@ -1,5 +1,4 @@
 class Bond < ApplicationRecord
-
   belongs_to :asset
   has_many :payouts
   monetize :amount_cents
@@ -22,8 +21,10 @@ class Bond < ApplicationRecord
     errors.add(start_date, "End date must be greater than start date") if start_date >= end_date
   end
 
+  def job
+    # raise
+    NotifyUserJob.perform_now(current_user)
+  end
+
   private
-
-
-
 end
