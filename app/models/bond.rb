@@ -1,5 +1,4 @@
 class Bond < ApplicationRecord
-  before_save :set_period
 
   belongs_to :asset
   has_many :payouts
@@ -25,8 +24,6 @@ class Bond < ApplicationRecord
 
   private
 
-  def set_period
-    self.period =  ((end_date - start_date) / 365).floor
-  end
+
 
 end

@@ -25,12 +25,13 @@ class BondsController < ApplicationController
 
   def create
     @bond = Bond.new(bond_params)
+    set_period
     add_returns
     authorize @bond
     if @bond.save
       redirect_to asset_bonds_path(@bond.asset), notice: "Your bond has been created"
     else
-      redirect_to asset_bonds_path(@bond.asset), alert: "Something went wrong 😔"
+      redirect_to asset_bonds_path(@bond.asset), alert: "Something went wrong "
     end
   end
 
@@ -91,6 +92,10 @@ class BondsController < ApplicationController
         )
       end
     end
+  end
+
+  def set_period
+    @bond.period =  ((@bond.end_date - @bond.start_date) / 365).floor
   end
 
   def bond_params
