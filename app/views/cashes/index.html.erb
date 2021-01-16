@@ -1,0 +1,51 @@
+<div class="container">
+  <%= render 'shared/back' %>
+<div class="d-flex justify-content-between mt-2">
+  <h1>Cash</h1>
+  <div class="d-flex h-50 gap-3">
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#cashWithdrawalModal">Withdrawal</button>
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#cashDepositModal">Deposit</button>
+  </div>
+</div>
+<h3>All cash total = <%= humanized_money(@total) %></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Transaction date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% counter = 1 %>
+        <% @cash_transactions.each do |cash| %>
+      <tr>
+          <th scope="row"><%= counter %></th>
+          <td><%= cash.created_at.to_date %></td>
+          <% if cash.action == "deposit" %>
+            <td><i class="fas fa-arrow-down mr-2" style="color: #32cd32;"></i> <%= humanized_money(cash.amount) %></td>
+          <% else %>
+            <td><i class="fas fa-arrow-up mr-2" style="color:#ec524b;"></i> <%= humanized_money(cash.amount) %></td>
+          <% end %>
+          <td><%= cash.details %></td>
+          <td class=" pb-0 text-left w-25">
+            <%#= form_for current_user.cash, cash_path(current_user.cash) do %>
+              <!-- <i class="far fa-trash-alt" style="color: #ec524b;"></i> -->
+              <%#= hidden_field_tag 'cash_id', value: cash.id %>
+            <%# end %>
+          </td>
+      </tr>
+          <% counter += 1 %>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+<%#= render partial: 'new_cash_modal', locals:{ new_cash: @new_cash } %>
+<%= render partial: 'cash_deposits/new_cash_deposit_modal', locals:{ new_deposit: @new_deposit } %>
+<%= render partial: 'cash_withdrawals/new_cash_withdrawal_modal', locals:{ new_withdrawal: @new_withdrawal } %>
+
+
+
+
+

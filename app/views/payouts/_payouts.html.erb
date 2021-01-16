@@ -1,0 +1,89 @@
+<div class="container mt-4">
+
+  <%= month_calendar(events: payouts, attribute: :payout_date, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link) do |date, payouts| %>
+  <%#= raise %>
+  <% if date.friday? || date.saturday? %>
+    <div class="d-flex flex-row-reverse">
+      <strong style="color: red;"><%= date.day %></strong>
+    </div>
+  <% else %>
+    <div class="d-flex flex-row-reverse">
+      <strong><%= date.day %></strong>
+    </div>
+  <% end %>
+
+    <% if payouts.any? %>
+      <hr class="m-0 mb-2">
+      <% payouts_amounts = [] %>
+      <% payouts.each do |payout| %>
+      <% payouts_amounts << payout.amount %>
+        <div class="font-right-small d-flex justify-content-between mx-2" >
+          <% if payout.bond.payouts.last == payout %>
+          <% payouts_amounts << payout.bond.amount %>
+          <i class="fas fa-money-bill" style="color: red;"></i>
+          <p class="m-0" style="color:red;" data-toggle="tooltip" title="<%= payout.bond.terms.capitalize %> <%= humanized_money(payout.bond.amount) %>
+            Last Day"><%= humanized_money(payout.amount) %></p>
+          <% else %>
+            <i class="fas fa-money-bill" style="color: gray;"></i>
+            <p class="m-0" data-toggle="tooltip" title="<%= payout.bond.terms.capitalize %> <%= humanized_money(payout.bond.amount) %>"><%= humanized_money(payout.amount) %></p>
+          <% end %>
+        </div>
+        <%#= raise %>
+      <% end %>
+      <div class="m-0">
+        <hr class="m-0 mb-1 ">
+        <div class="font-right-small d-flex justify-content-between mx-2" >
+          <p class="m-0" style="font-weight: bold;">Total</p>
+
+          <p class="m-0 total_payout"><%= humanized_money(payouts_amounts.sum) %></p>
+        </div>
+      </div>
+
+    <% end %>
+
+
+
+  <% end %>
+    <div class="d-flex justify-content-between">
+      <h4>
+        This month's Payouts total
+      </h4>
+      <h4>
+        <%#= raise %>
+        <%# total = payouts.sum(:amount_cents) %>
+        <%#= humanized_money(total) %>
+      </h4>
+    </div>
+
+
+</div>
+
+<script>
+
+   // const payouts = document.querySelectorAll('.total_payout')
+   // let payoutTotals = []
+   // payouts.forEach((payout) => {
+    // payoutTotals.push(Number(payout.innerText))
+   // });
+  // console.log(payoutTotals)
+
+
+
+</script>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
