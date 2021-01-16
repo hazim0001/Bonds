@@ -105,6 +105,4 @@ class BondsController < ApplicationController
   def set_bond
     @bond = Bond.find(params[:id])
   end
-
-
 end

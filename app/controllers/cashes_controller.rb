@@ -7,7 +7,7 @@ class CashesController < ApplicationController
     else
       @cash = current_user.cash
     end
-    @total = @cash.amount_cents / 100.0
+    @total = @cash.amount_cents / 100.0 if current_user.cash.amount_cents >= 0
     @new_deposit = CashDeposit.new
     @new_withdrawal = CashWithdrawal.new
     @cash_transactions = current_user.cash_transactions.order(created_at: :desc)
@@ -23,7 +23,7 @@ class CashesController < ApplicationController
   end
 
   def create
-    # raise
+    raise
     @cash = Cash.new(cash_params)
     authorize @cash
     if @cash.save
