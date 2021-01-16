@@ -24,12 +24,18 @@ gem 'redis', '~> 4.0'
 gem 'pundit'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'money-rails', '~>1.12'
+
+gem 'simple_calendar', '~> 2.4', '>= 2.4.1'
+
+gem 'jquery-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-gem 'faker'
+
+gem 'whenever', require: false
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
@@ -50,6 +56,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'faker'
 end
 
 group :test do

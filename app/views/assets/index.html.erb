@@ -1,0 +1,102 @@
+<div class="container">
+
+  <ul class="nav nav-pills mt-5">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="pill" href="#assets">Assets</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#addNew">New asset</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#menu2">Menu 2</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane container active mt-4" id="assets">
+      <div class="d-flex flex-wrap mt-4 gap-5 justify-content-center">
+
+        <%= link_to asset_bonds_path(@asset), class:"text-decoration-none" do %>
+          <div class="card text-center " style="width: 11rem;border-radius: 30px;">
+            <div class="card-body">
+              <h5 class="card-title">Bonds</h5>
+              <i class="fas fa-file-invoice-dollar" style="font-size: 5vh;color: gray;"></i>
+            </div>
+          </div>
+        <% end %>
+
+        <%= link_to asset_cashes_path(@asset), class:"text-decoration-none" do %>
+          <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
+            <div class="card-body">
+              <h5 class="card-title">Cash</h5>
+              <i class="fas fa-money-bill-wave-alt" style="font-size: 5vh;color: gray;"></i>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to asset_properties_path(@asset), class:"text-decoration-none" do %>
+          <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
+            <div class="card-body">
+              <h5 class="card-title">Properties</h5>
+              <i class="far fa-building" style="font-size: 5vh;color: gray;"></i>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to asset_stocks_path(@asset), class:"text-decoration-none" do %>
+          <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
+            <div class="card-body">
+              <h5 class="card-title">Stocks</h5>
+              <i class="fas fa-chart-line" style="font-size: 5vh;color: gray;"></i>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="tab-pane container fade" id="addNew">
+      <div class="d-flex align-items-start mt-5">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">New bond</a>
+          <a class="nav-link mt-3" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">New deposit</a>
+          <a class="nav-link mt-3" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">New property</a>
+          <a class="nav-link mt-3" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">New Stock</a>
+        </div>
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active vw-61" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <%= render 'new_bond' %>
+          </div>
+          <div class="tab-pane fade vw-61" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+             <%= render 'new_deposit' %>
+          </div>
+          <div class="tab-pane fade vw-61" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+             <%= render 'new_property' %>
+          </div>
+          <div class="tab-pane fade vw-61" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+             <%= render 'new_stock' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane container fade" id="menu2">
+      <!-- whatever we pass inside menu2 tab -->
+    </div>
+  </div>
+
+
+
+</div>
+<style>
+  .vw-61{
+    width: 61vw !important;
+  }
+  .card:hover {
+    animation: mymove 3s infinite;
+  }
+
+  @keyframes mymove {
+
+    50% {box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;}
+  }
+</style>

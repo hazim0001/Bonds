@@ -1,0 +1,72 @@
+<div class="container">
+  <%= render 'shared/back' %>
+<div class="d-flex justify-content-between mt-2">
+  <h1>Bonds</h1>
+  <div class="h-50">
+    <%= link_to 'Bonds payouts schedule', payouts_path, class:"btn btn-outline-primary mr-3" %>
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newBondModal">Add new Bond</button>
+  </div>
+</div>
+<h3>All bonds total = <%= humanized_money(@total) %></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="w-1vw">#</th>
+        <th scope="col" class="w-1vw">Start date</th>
+        <th scope="col" class="w-1vw">End date</th>
+        <th scope="col" class="w-1vw">Interest rate</th>
+        <th scope="col" class="w-1vw">Amount</th>
+        <th scope="col" class="w-1vw">Duration</th>
+        <th scope="col" class="w-1vw">Term</th>
+        <th scope="col" class="w-1vw">Term return</th>
+        <th scope="col" class="w-1vw">Annual return</th>
+        <th scope="col" class="w-1vw">Defaulted Value</th>
+        <th scope="col" class="w-1vw">Compounded Value</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% counter = 1 %>
+        <% @bonds.each do |bond| %>
+      <tr>
+          <th scope="row"><%= counter %></th>
+          <td class="w-1vw"><%= bond.start_date %></td>
+          <td class="w-1vw"><%= bond.end_date %></td>
+          <td class="w-1vw"><%= bond.interest_rate %>%</td>
+          <td class="w-1vw"><%= humanized_money(bond.amount) %></td>
+          <td class="w-1vw"><%= pluralize(bond.period, "year") %></td>
+          <% if bond.terms == "monthly" %>
+            <td class="w-1vw"><span class="badge rounded-pill bg-primary" style="color: white;">M</span></td>
+            <td class="w-1vw"><%= humanized_money(bond.monthly_return)%></td>
+          <% else %>
+            <td class="w-1vw"><span class="badge rounded-pill bg-success">Q</span></td>
+            <td class="w-1vw"><%= humanized_money(bond.quarterly_return)%></td>
+          <% end %>
+          <td class="w-1vw"><%= humanized_money(bond.annual_return) %></td>
+          <% normal_retun = ((bond.annual_return_cents * bond.period) / 100) + (bond.amount_cents / 100) %>
+          <td class="w-1vw"><%= humanized_money(normal_retun) %></td>
+          <td class="w-1vw"><%= humanized_money(bond.compound) %></td>
+          <td class="w-1vw" class=" pb-0">
+            <p class="card-text d-flex flex-row-reverse justify-content-between">
+              <%= link_to bond_path(bond.id), method: :delete, data: { confirm: "Are you sure you want to delete this bond?", disable_with: "Processing..." } do %>
+                <i class="far fa-trash-alt" style="color: #ec524b;"></i>
+              <% end %>
+              <button class="m-0" type="button" data-toggle="modal" data-target="#updatebondModal<%= bond.id %>">
+                <i class="far fa-edit mx-3" style="color: gray;"></i>
+              </button>
+            </p>
+          </td>
+          <%= render partial: 'update_bond_modal', locals:{ bond: bond } %>
+      </tr>
+          <% counter += 1 %>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+<%#= render partial: 'new_bond_modal', locals:{ new_bond: @new_bond } %>
+
+
+<style>
+  .w-1vw{
+    width: 1.5vw;
+  }
+</style>
