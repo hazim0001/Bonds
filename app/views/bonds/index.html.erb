@@ -7,7 +7,11 @@
     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#newBondModal">Add new Bond</button>
   </div>
 </div>
-<h3>All bonds total = <%= humanized_money(@total) %></h3>
+<div class="d-flex">
+  <h3 id="totalBonds">All bonds total = <%= humanized_money(@total) %></h3>
+  <i id="see" class="fas fa-eye mt-2 ml-3" style="color: black;font-size: 1rem;"></i>
+
+</div>
   <table class="table">
     <thead>
       <tr>
@@ -64,7 +68,20 @@
 </div>
 <%#= render partial: 'new_bond_modal', locals:{ new_bond: @new_bond } %>
 
+<script>
+  const total = document.getElementById('totalBonds')
+  const visible = document.getElementById('see')
 
+  visible.addEventListener('click',(event) => {
+    if (total.innerHTML === "All bonds total = XXXXXXX") {
+        total.innerHTML = "All bonds total = <%= humanized_money(@total) %>";
+      } else {
+        total.innerHTML = "All bonds total = XXXXXXX";
+      };
+    visible.classList.toggle("fa-eye-slash");
+  });
+
+</script>
 <style>
   .w-1vw{
     width: 1.5vw;

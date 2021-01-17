@@ -12,6 +12,7 @@
 <div id="payouts_calendar">
   <%= render partial: "payouts", locals: {payouts: @payouts} %>
 </div>
-<script>
-  $("#payouts_calendar").html("<%= escape_javascript render(partial: "payouts", locals: {payouts: @payouts}) %>");
+<!-- <script>
+  $("#payouts_calendar").html("<%#= escape_javascript render(partial: "payouts", locals: {payouts: @payouts}) %>");
 </script>
+ -->
