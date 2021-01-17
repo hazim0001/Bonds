@@ -15,11 +15,11 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div class="tab-pane container active mt-4" id="assets">
-      <div class="d-flex flex-wrap mt-4 gap-5 justify-content-center">
+      <div class="d-flex flex-wrap mt-4 gap-4 justify-content-center">
 
         <%= link_to asset_bonds_path(@asset), class:"text-decoration-none" do %>
-          <div class="card text-center " style="width: 11rem;border-radius: 30px;">
-            <div class="card-body">
+          <div class="card text-center m-2 " style="width: 11rem;border-radius: 30px;">
+            <div class="card-body ">
               <h5 class="card-title">Bonds</h5>
               <i class="fas fa-file-invoice-dollar" style="font-size: 5vh;color: gray;"></i>
             </div>
@@ -27,24 +27,24 @@
         <% end %>
 
         <%= link_to asset_cashes_path(@asset), class:"text-decoration-none" do %>
-          <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
-            <div class="card-body">
+          <div class="card text-center m-2"  style="width: 11rem;border-radius: 30px;">
+            <div class="card-body ">
               <h5 class="card-title">Cash</h5>
               <i class="fas fa-money-bill-wave-alt" style="font-size: 5vh;color: gray;"></i>
             </div>
           </div>
         <% end %>
         <%= link_to asset_properties_path(@asset), class:"text-decoration-none" do %>
-          <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
-            <div class="card-body">
+          <div class="card text-center m-2"  style="width: 11rem;border-radius: 30px;">
+            <div class="card-body ">
               <h5 class="card-title">Properties</h5>
               <i class="far fa-building" style="font-size: 5vh;color: gray;"></i>
             </div>
           </div>
         <% end %>
         <%= link_to asset_stocks_path(@asset), class:"text-decoration-none" do %>
-          <div class="card text-center"  style="width: 11rem;border-radius: 30px;">
-            <div class="card-body">
+          <div class="card text-center m-2"  style="width: 11rem;border-radius: 30px;">
+            <div class="card-body ">
               <h5 class="card-title">Stocks</h5>
               <i class="fas fa-chart-line" style="font-size: 5vh;color: gray;"></i>
             </div>
