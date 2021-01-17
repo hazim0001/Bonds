@@ -23,7 +23,6 @@ class CashesController < ApplicationController
   end
 
   def create
-    raise
     @cash = Cash.new(cash_params)
     authorize @cash
     if @cash.save
